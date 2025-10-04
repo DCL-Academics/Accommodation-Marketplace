@@ -1,0 +1,10 @@
+Spring:
+    application:
+      name: accommodation-marketplace
+    datasource:
+      url:
+      username:
+      password:
+    jpa:
+      show-sql: true
+      open-in-view:
