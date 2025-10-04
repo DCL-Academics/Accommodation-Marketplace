@@ -4,9 +4,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/springboot_Airbnb?createDatabaseIfNotExist=true
-    username: root
-    password: root
+    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/Airbnb?createDatabaseIfNotExist=true}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
 
   jpa:
     show-sql: true
@@ -15,3 +15,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+
+  config:
+    import: optional:file:.env
