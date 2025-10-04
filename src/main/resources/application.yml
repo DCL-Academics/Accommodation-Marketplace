@@ -2,7 +2,7 @@ Spring:
     application:
       name: accommodation-marketplace
     datasource:
-      url:
+      url: ${}
       username:
       password:
     jpa:
