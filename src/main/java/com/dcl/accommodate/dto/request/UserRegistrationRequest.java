@@ -30,6 +30,7 @@ public record UserRegistrationRequest(
         @Past(message = "Date of birth must be in the past")
         @NotNull(message = "date_of_birth cannot be null")
         @JsonProperty("date_of_birth")
+        @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
         LocalDate dateOfBirth,
 
         @Email(message = "Email must be valid")
@@ -40,7 +41,6 @@ public record UserRegistrationRequest(
         )
         @NotNull(message = "email cannot be null")
         @JsonProperty("email")
-        @JsonFormat(pattern = "YYYY-MM-DD", shape = JsonFormat.Shape.STRING)
         String email,
 
         @NotBlank(message = "Password is required")
