@@ -1,6 +1,6 @@
-package com.dcl.accommodate.ENUMS;
+package com.dcl.accommodate.enums;
 
 public enum UserRoles {
-    USER,
-    ADMIN
+    GUEST,
+    HOST
 }
