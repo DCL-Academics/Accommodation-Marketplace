@@ -1,4 +1,4 @@
-package com.dcl.accommodate.exception.handler;
+package com.dcl.accommodate.handler;
 
 import com.dcl.accommodate.dto.wrapper.ApiErrors;
 import com.dcl.accommodate.dto.wrapper.FieldError;

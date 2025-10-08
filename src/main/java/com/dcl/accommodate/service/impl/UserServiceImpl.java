@@ -3,7 +3,7 @@ package com.dcl.accommodate.service.impl;
 import com.dcl.accommodate.dto.response.RegisterResponse;
 import com.dcl.accommodate.dto.request.UserRegistrationRequest;
 import com.dcl.accommodate.enums.UserRole;
-import com.dcl.accommodate.exception.handler.UserAlreadyExistsByEmailException;
+import com.dcl.accommodate.exception.UserAlreadyExistsByEmailException;
 import com.dcl.accommodate.model.User;
 import com.dcl.accommodate.repository.UserRepository;
 import com.dcl.accommodate.service.UserService;
@@ -41,16 +41,6 @@ public class UserServiceImpl implements UserService {
                 savedUser.getAvatar(),
                 savedUser.getCreatedDate()
         );
-    }
-
-    @Override
-    public void registerUser(UserRegistrationRequest request) {
-            if(userRepository.existsByEmail(request.email()))
-                throw new UserAlreadyExistsByEmailException("user account already exists by given email");
-
-            var user = this.toUser(request);
-            user.setUserRole(UserRole.GUEST);
-            userRepository.save(user);
     }
 
     private User toUser(UserRegistrationRequest request) {

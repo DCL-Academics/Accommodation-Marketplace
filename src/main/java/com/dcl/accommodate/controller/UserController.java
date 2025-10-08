@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.time.Duration;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -23,7 +21,8 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<ApiAck> registerUser(@RequestBody UserRegistrationRequest request) {
-        userService.registerUser(request);
+        userService.register(request);
+
         return ResponseEntity
                 .created(URI.create("/api/v1/profile"))
                 .body(new ApiAck(true, "User registered successfully"));

@@ -1,6 +1,7 @@
-package com.dcl.accommodate.exception.handler;
+package com.dcl.accommodate.handler;
 
 import com.dcl.accommodate.dto.wrapper.ApiAck;
+import com.dcl.accommodate.exception.UserAlreadyExistsByEmailException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
