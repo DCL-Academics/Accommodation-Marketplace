@@ -17,7 +17,7 @@ public class LoginService {
 
 
     public LoginResponse validateUser(LoginRequest loginRequest) {
-       Optional<User> optionalUser= userRepository.findByEmail(loginRequest.getEmail());
+//       Optional<User> optionalUser= userRepository.findByEmail(loginRequest.getEmail());
         return new LoginResponse();
     }
 }
