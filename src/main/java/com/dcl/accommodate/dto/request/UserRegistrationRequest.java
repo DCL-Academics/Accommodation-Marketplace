@@ -58,4 +58,3 @@ public record UserRegistrationRequest(
 
 ) {}
 
-//UserRegistrationRequest is a record because it’s a data-only DTO, immutable, concise, and perfectly suited for request validation in a Spring Boot API.
