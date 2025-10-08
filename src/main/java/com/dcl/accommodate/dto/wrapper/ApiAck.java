@@ -1,8 +1,7 @@
 package com.dcl.accommodate.dto.wrapper;
 
-public record ApiResponse<T>(
+public record ApiAck(
         boolean success,
-        String message,
-        T data
+        String message
 ) {
 }

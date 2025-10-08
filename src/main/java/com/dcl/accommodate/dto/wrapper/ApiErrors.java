@@ -1,4 +1,11 @@
 package com.dcl.accommodate.dto.wrapper;
 
-public record ApiErrors() {
+
+import java.util.List;
+
+public record ApiErrors(
+        boolean success,
+        String message,
+        List<FieldError> errors
+) {
 }
