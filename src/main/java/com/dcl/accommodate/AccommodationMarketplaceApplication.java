@@ -14,22 +14,11 @@ import java.util.Map;
 @EnableJpaAuditing
 public class AccommodationMarketplaceApplication {
 
-//    @Autowired
-//    private JwtService jwtService;
 
     public static void main(String[] args) {
 
         SpringApplication.run(AccommodationMarketplaceApplication.class, args);
-//        var context =
-//        var app = context.getBean(AccommodationMarketplaceApplication.class);
 
-//        Map<String , Object> claims = Map.of(
-//                "email" , "abc@gmail.com",
-//                "role" , UserRole.HOST.name()
-//        );
-//
-//        var token = app.jwtService.generateToken(claims , "abc" , Duration.ofHours(1));
-//        System.out.println(token);
     }
 
 }

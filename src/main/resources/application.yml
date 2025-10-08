@@ -2,7 +2,7 @@
 
 spring:
   application:
-    name: DCL-Project
+    name: accommodation-marketplace
   config:
     import: optional:file:.env[.properties]
 

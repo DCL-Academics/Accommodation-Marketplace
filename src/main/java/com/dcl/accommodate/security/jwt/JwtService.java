@@ -38,9 +38,6 @@ public class JwtService {
 
     }
 
-//    private Key getSignatureKey() {
-//        return Keys.hmacShaKeyFor(Base64.getDecoder().decode(secret));
-//    }
 
     public Claims extractClaims (String token){
         return Jwts.parserBuilder()
