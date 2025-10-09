@@ -13,6 +13,9 @@ import java.util.UUID;
 
 @Entity
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
@@ -54,5 +57,6 @@ public class User {
     @Column(name = "last_modified_date")
     @LastModifiedDate
     private Instant lastModifiedDate;
+
 
 }
