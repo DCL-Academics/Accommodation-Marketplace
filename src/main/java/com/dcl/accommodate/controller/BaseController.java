@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1")
 @AllArgsConstructor
 public class BaseController {
 
-    @GetMapping
+    @GetMapping("/health")
     public ResponseEntity<ApiAck> health(){
         return ResponseEntity.ok(
         new ApiAck(
