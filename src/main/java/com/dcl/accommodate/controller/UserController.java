@@ -21,9 +21,9 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<ApiAck> registerUser(@Validated @RequestBody UserRegistrationRequest user){
+    public ResponseEntity<ApiAck> registerUser(@Validated @RequestBody UserRegistrationRequest user) {
         userService.registerUser(user);
         return ResponseEntity.created(URI.create("api/v1/profile"))
-                .body(new ApiAck(true,"user registered successfully"));
+                .body(new ApiAck(true, "user registered successfully"));
     }
 }

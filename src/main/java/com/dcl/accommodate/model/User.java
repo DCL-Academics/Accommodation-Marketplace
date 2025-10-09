@@ -15,6 +15,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @Table(name = "users")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
@@ -47,7 +50,7 @@ public class User {
     @Column(name = "avatar")
     private String avatar;
 
-    @Column(name = "created_date",nullable = false, updatable = false)
+    @Column(name = "created_date", nullable = false, updatable = false)
     @CreatedDate
     private Instant createdDate;
 

@@ -15,7 +15,7 @@ public class AppEnv {
 
     @Getter
     @Setter
-    public static class Jwt{
+    public static class Jwt {
         private String secret;
     }
 }

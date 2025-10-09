@@ -8,6 +8,7 @@ import com.dcl.accommodate.repository.UserRepository;
 import com.dcl.accommodate.service.contracts.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,14 +16,16 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void registerUser(UserRegistrationRequest registration) {
-        if(repository.existsByEmail(registration.email()))
+        if (repository.existsByEmail(registration.email()))
             throw new UserAlreadyExistByEmailException("User already registered with such email ID");
         var user = this.toUser(registration);
         //All users are GUEST by default
-        user.setRole(UserRole.GUEST);
+        user.setUserRole(UserRole.GUEST);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         repository.save(user);
     }
 

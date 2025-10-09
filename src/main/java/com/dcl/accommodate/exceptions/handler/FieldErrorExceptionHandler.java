@@ -22,12 +22,12 @@ public class FieldErrorExceptionHandler extends ResponseEntityExceptionHandler {
         List<FieldError> errors = this.getFieldErrors(ex.getAllErrors());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ApiErrors(false,"Invalid Input",errors));
+                .body(new ApiErrors(false, "Invalid Input", errors));
     }
 
     private List<FieldError> getFieldErrors(List<ObjectError> errors) {
         return errors.stream()
-                .map(error->(org.springframework.validation.FieldError)error)
+                .map(error -> (org.springframework.validation.FieldError) error)
                 .map(fieldError -> new FieldError(fieldError.getField(),
                         fieldError.getRejectedValue(),
                         fieldError.getDefaultMessage()))
