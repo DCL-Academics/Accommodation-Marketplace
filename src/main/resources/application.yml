@@ -1,14 +1,11 @@
 spring:
-  application:
-    name: accommodation-marketplace
-
   config:
-    import: optional:file:.env
+    import: optional:file:.env[.properties]
 
   datasource:
-    url: jdbc:mysql://localhost:3306/accommodation_db?createDatabaseIfNotExist=true
-    username: root
-    password: Varun@2025
+    url: ${DATASOURCE_URL}
+    username: ${MySQL_USER}
+    password: ${MySQL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -22,4 +19,4 @@ spring:
 
 app:
   jwt:
-    secret: 2bqqGH4PKSrWivziM2jBi78bshK7WJhlN1oIT8Waxxg=
+    secret: ${JWT_SECRET}
