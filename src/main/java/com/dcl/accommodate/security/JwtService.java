@@ -1,4 +1,4 @@
-package com.dcl.accommodate.security.jwt;
+package com.dcl.accommodate.security;
 
 import com.dcl.accommodate.config.AppEnv;
 import io.jsonwebtoken.Claims;
