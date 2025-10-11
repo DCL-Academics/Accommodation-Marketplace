@@ -58,4 +58,5 @@ public record UserRegistrationRequest(
         )
         @JsonProperty("password")
         String password
-){}
+) {
+}

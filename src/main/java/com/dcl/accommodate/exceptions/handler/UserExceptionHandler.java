@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class UserExceptionHandler {
 
     @ExceptionHandler(UserAlreadyExistByEmailException.class)
-    public ResponseEntity<ApiAck> handleUserAlreadyExistByEmail(UserAlreadyExistByEmailException exception){
+    public ResponseEntity<ApiAck> handleUserAlreadyExistByEmail(UserAlreadyExistByEmailException exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(new ApiAck(false, exception.getMessage()));
     }

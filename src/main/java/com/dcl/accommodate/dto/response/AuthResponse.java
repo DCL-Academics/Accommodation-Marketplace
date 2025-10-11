@@ -1,0 +1,24 @@
+package com.dcl.accommodate.dto.response;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.UUID;
+
+public record AuthResponse(
+        @JsonProperty("user_id")
+        String userId,
+
+        @JsonProperty("access_token")
+        String accessToken,
+
+        @JsonProperty("access_validity")
+        int accessValidity,
+
+        @JsonProperty("refresh_token")
+        String refreshToken,
+
+        @JsonProperty("refresh_validity")
+        int refreshValidity
+) {
+}
