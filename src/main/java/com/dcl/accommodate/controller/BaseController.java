@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class BaseController {
 
-    @GetMapping("/health")
+    @GetMapping("/public/health")
     public ResponseEntity<ApiAck> health(){
         return ResponseEntity.ok(
         new ApiAck(

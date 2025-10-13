@@ -1,4 +1,4 @@
-package com.dcl.accommodate.security;
+package com.dcl.accommodate.security.jwt;
 
 import com.dcl.accommodate.config.AppEnv;
 import io.jsonwebtoken.Claims;
@@ -21,20 +21,40 @@ public class JwtService {
 
 
     private final Key key;
+    private final AppEnv env;
 
     public JwtService(AppEnv env){
         this.key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(env.getJwt().getSecret()));
+        this.env = env;
     }
 
-    public String generateToken(Map<String,Object> claims, String subject, Duration ttl){
+    public record TokenConfig (
+            Map<String,Object> claims,
+            String subject,
+            JwtType jwtType
+    ) {
+    }
+
+    public record TokenResult(
+            String token,
+            Duration ttl
+    ){}
+    public TokenResult generateToken(TokenConfig config){
         var systemMillis = System.currentTimeMillis();
-        return Jwts.builder()
-                .setClaims(claims)
+
+        Duration ttl = config.jwtType.equals(JwtType.ACCESS)
+                ? env.getJwt().getAccessTtl()
+                : env.getJwt().getRefreshTtl();
+
+        String token =  Jwts.builder()
+                .setHeaderParam("type", config.jwtType.name())
+                .setClaims(config.claims)
                 .setIssuedAt(new Date(systemMillis))
                 .setExpiration(new Date(systemMillis + ttl.toMillis()))
-                .setSubject(subject)
+                .setSubject(config.subject)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact(); //
+        return new TokenResult(token, ttl);
     }
 
 
