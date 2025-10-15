@@ -1,9 +1,7 @@
 package com.dcl.accommodate.security.jwt;
 
 import com.dcl.accommodate.config.AppEnv;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +11,8 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.Map;
 
-/*
- * class is responsible for Token generation
- */
 @Service
 public class JwtService {
-
 
     private final Key key;
     private final AppEnv env;
@@ -32,13 +26,13 @@ public class JwtService {
             Map<String,Object> claims,
             String subject,
             JwtType jwtType
-    ) {
-    }
+    ) {}
 
     public record TokenResult(
             String token,
             Duration ttl
     ){}
+
     public TokenResult generateToken(TokenConfig config){
         var systemMillis = System.currentTimeMillis();
 
@@ -53,17 +47,26 @@ public class JwtService {
                 .setExpiration(new Date(systemMillis + ttl.toMillis()))
                 .setSubject(config.subject)
                 .signWith(key, SignatureAlgorithm.HS256)
-                .compact(); //
+                .compact();
+
         return new TokenResult(token, ttl);
     }
 
-
-    private Claims getClaims(String token){
+    public Jws<Claims> getClaims(String token){
         return Jwts.parserBuilder()
                 .setSigningKey(key)
-                .build()//return a parser to parse JWT
-                .parseClaimsJws(token)
-                .getBody();
+                .build()
+                .parseClaimsJws(token);
     }
 
+    public String getJwtType(String token) {
+        return (String) getClaims(token).getHeader().get("type");
+    }
+
+    public String extractToken(String authorizationHeader) {
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            return authorizationHeader.substring(7);
+        }
+        return null;
+    }
 }
